@@ -25,5 +25,5 @@ def group_pieChart(saveName,chartObj):
 
 
     plt.axis('equal')  # 设置x，y轴刻度一致，以使饼图成为圆形。
-    plt.savefig(saveName+'.jpg')
+    plt.savefig('./images/'+saveName+'.jpg')
     plt.show()

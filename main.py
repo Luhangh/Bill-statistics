@@ -4,10 +4,6 @@ from read_file import read_file
 from write_file import file_init
 from statistics import *
 from visualization import *
-import matplotlib.pyplot as plt
-import pandas as pd
-import time
-import datetime
 from config import *
 
 data_list = []
@@ -28,14 +24,35 @@ data = {
 
 
 if __name__ == '__main__':
+
+    a = """
+
+       
+     /\__\     /\__\         /\  \         /\__\         /\  \         /\  \         /\  \    
+    /:/  /    /:/  /        /::\  \       /:/  /        /::\  \       /::\  \       /::\  \   
+   /:/  /    /:/  /        /:/\:\  \     /:/__/        /:/\:\  \     /:/\:\  \     /:/\:\  \  
+  /:/  /    /:/  /  ___   /:/  \:\  \   /::\  \ ___   /::\~\:\  \   /::\~\:\  \   /:/  \:\  \ 
+ /:/__/    /:/__/  /\__\ /:/__/ \:\__\ /:/\:\  /\__\ /:/\:\ \:\__\ /:/\:\ \:\__\ /:/__/_\:\__
+ \:\  \    \:\  \ /:/  / \:\  \  \/__/ \/__\:\/:/  / \:\~\:\ \/__/ \/__\:\ \/__/ \:\  /\ \/__/
+  \:\  \    \:\  /:/  /   \:\  \            \::/  /   \:\ \:\__\        \:\__\    \:\ \:\__\  
+   \:\  \    \:\/:/  /     \:\  \           /:/  /     \:\ \/__/         \/__/     \:\/:/  /  
+    \:\__\    \::/  /       \:\__\         /:/  /       \:\__\                      \::/  /   
+     \/__/     \/__/         \/__/         \/__/         \/__/                       \/__/                                                                                                                                                  
+                                               
+功能列表：   
+ 0.全部账单统计                                                                             
+ 1.支付宝交易类型饼状图
+ 2.微信交易类型饼状图
+ 11.支付宝年度账单统计
+    """
+
     # 初始化一下输出文件的环境
-    # 默认把结果写到result/result.txt
-    # 你可以用file_init('a.txt')改变输出文件名
     file_init()
     # 读取config配置的csv文件
-    
     read_file(groupType,data_list)
-    t = int(time.time())
+    print(a)
+    type = input('请选择生成账单视图类型:')
+    groupType = int(type)
     if groupType == 2:
         obj = group_typeChart(wx_types,'trade_type',data_list)
         group_pieChart("微信交易类型饼状图",obj)
@@ -45,8 +62,10 @@ if __name__ == '__main__':
     elif groupType == 11:
         objTime = group_timeChart(time_types,data_list)
         group_pieChart("支付宝交易时间段饼状图",objTime)
-    
-    
+    else:
+        print('没有此功能')
+        sys.exit(1)
+ 
     
 
 
