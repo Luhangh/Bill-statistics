@@ -5,6 +5,7 @@ from write_file import file_init
 from statistics import *
 from visualization import *
 from config import *
+import sys
 
 data_list = []
 '''
@@ -44,6 +45,7 @@ if __name__ == '__main__':
  1.支付宝交易类型饼状图
  2.微信交易类型饼状图
  11.支付宝年度账单统计
+ 12.支付宝历年账单收支堆积柱状图
     """
 
     # 初始化一下输出文件的环境
@@ -62,9 +64,14 @@ if __name__ == '__main__':
     elif groupType == 11:
         objTime = group_timeChart(time_types,data_list)
         group_pieChart("支付宝交易时间段饼状图",objTime)
+    elif groupType == 12:
+        objTime = data_histogram(time_types,data_list)
+        group_histogram("支付宝历年账单收支堆积柱状图",types[2],objTime,types[3])
     else:
         print('没有此功能')
         sys.exit(1)
+    sys.exit(1)
+    
  
     
 

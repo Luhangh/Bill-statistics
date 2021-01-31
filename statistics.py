@@ -131,3 +131,23 @@ def group_timeChart(times,data):
         type += '支出金额：￥'+str(pay)
         chartObj[type] = abs(pay)
     return chartObj
+
+# 统计各个年份交易时间段类型 的收入与支出
+def data_histogram(times,data):
+    chartObj = []
+    for type in times:
+        pay = 0.0
+        inPay = 0.0
+        pays = []
+        for item in data:
+            year = item['pay_time'].tm_year
+            num = str.replace(type,'年','')
+            if year == int(num):
+                if item['pay_type'] == '支出':
+                    pay = round(pay + item['pay_num'], 2)
+                elif item['pay_type'] == '收入':
+                    inPay = round(inPay - item['pay_num'], 2)
+        
+        pays = [abs(inPay),abs(pay)]
+        chartObj.append(pays)
+    return chartObj
