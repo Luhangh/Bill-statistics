@@ -7,6 +7,10 @@ wechatpay_list = [
     # "wechat20180701-20181001.csv",
     # "wechat20181001-20190101.csv",
 ]
+#mac下指定中文字体路径
+fname = "/System/Library/Fonts/STHeiti Light.ttc"
+#windows下： 第一步：将项目font文件夹下中文字体Simhei复制到C:/Windows/Fonts的字体目录中
+# fname = "C:/Windows/Fonts/simhei.ttf"
 
 # alipay_types = ['支付宝网站','淘宝','其他（包括阿里巴巴和外部商家）']
 wx_types = ['商户消费','零钱提现','微信红包','转账']

@@ -56,13 +56,13 @@ if __name__ == '__main__':
     type = input('请选择生成账单视图类型:')
     groupType = int(type)
     if groupType == 2:
-        obj = group_typeChart(wx_types,'trade_type',data_list)
+        obj = data_typeChart(wx_types,'trade_type',data_list)
         group_pieChart("微信交易类型饼状图",obj)
     elif groupType == 1:
-        obj = group_typeChart(alipay_types,'pay_object',data_list)
+        obj = data_typeChart(alipay_types,'pay_object',data_list)
         group_pieChart("支付宝交易类型饼状图",obj)
     elif groupType == 11:
-        objTime = group_timeChart(time_types,data_list)
+        objTime = data_timeChart(time_types,data_list)
         group_pieChart("支付宝交易时间段饼状图",objTime)
     elif groupType == 12:
         objTime = data_histogram(time_types,data_list)

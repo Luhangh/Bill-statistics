@@ -18,6 +18,16 @@ wechatpay_list = [
 ]
 ```
 ## 使用
+
+#### 图表中文字体配置
+
+```python
+#mac下指定中文字体路径
+fname = "/System/Library/Fonts/STHeiti Light.ttc"
+#windows下： 第一步：将项目font文件夹下中文字体Simhei复制到C:/Windows/Fonts的字体目录中
+# fname = "C:/Windows/Fonts/simhei.ttf"
+```
+
 执行脚本主逻辑在main.py
 ```python
 if __name__ == '__main__':
@@ -28,4 +38,14 @@ if __name__ == '__main__':
     # 读取config配置的csv文件
     read_file(data_list)
 
+```
+
+####控制台输出
+```python
+功能列表：   
+ 0.全部账单统计                                                                             
+ 1.支付宝交易类型饼状图
+ 2.微信交易类型饼状图
+ 11.支付宝年度账单统计
+ 12.支付宝历年账单收支堆积柱状图
 ```

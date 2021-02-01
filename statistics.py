@@ -90,7 +90,7 @@ def select_cost_between(min, max, data_list, pay_only=False):
     write('===================================')
 
 # 按交易分类
-def group_by_type(type,data_list):
+def data_by_type(type,data_list):
     pay = 0.0
     for data in data_list:
         if re.search(type, data['trade_type']):
@@ -101,7 +101,7 @@ def group_by_type(type,data_list):
     return pay
 
 # 统计各个交易类型 的总金额
-def group_typeChart(types,query_type,data):
+def data_typeChart(types,query_type,data):
     chartObj = {}
     for type in types:
         pay = 0.0
@@ -116,7 +116,7 @@ def group_typeChart(types,query_type,data):
     return chartObj
 
 # 统计各个交易时间段类型 的总金额
-def group_timeChart(times,data):
+def data_timeChart(times,data):
     chartObj = {}
     for type in times:
         pay = 0.0
@@ -132,7 +132,7 @@ def group_timeChart(times,data):
         chartObj[type] = abs(pay)
     return chartObj
 
-# 统计各个年份交易时间段类型 的收入与支出
+# 统计各个年份交易时间段类型 的收入与支出DataFrame
 def data_histogram(times,data):
     chartObj = []
     for type in times:
