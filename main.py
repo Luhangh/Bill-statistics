@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from os import fork
-from read_file import read_file
+from read_file import read_file,read_filename
 from write_file import file_init
 from statistics import *
 from visualization import *
@@ -50,16 +50,18 @@ if __name__ == '__main__':
 
     # 初始化一下输出文件的环境
     file_init()
-    # 读取config配置的csv文件
-    read_file(groupType,data_list)
     print(a)
     type = input('请选择生成账单视图类型:')
     groupType = int(type)
+    # 读取config配置的csv文件
+    read_file(groupType,data_list)
     if groupType == 2:
         obj = data_typeChart(wx_types,'trade_type',data_list)
+        print(str(obj))
         group_pieChart("微信交易类型饼状图",obj)
     elif groupType == 1:
         obj = data_typeChart(alipay_types,'pay_object',data_list)
+        print(str(obj))
         group_pieChart("支付宝交易类型饼状图",obj)
     elif groupType == 11:
         objTime = data_timeChart(time_types,data_list)

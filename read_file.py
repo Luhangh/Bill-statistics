@@ -3,26 +3,47 @@ import csv
 import re
 import time
 import pandas as pd
+import os
 
 from config import alipay_list, wechatpay_list
 
+
+#创建一个空列表，存储当前目录下的CSV文件全称
+file_name = []
+
 #type 1支付宝 2微信 0 全部
 def read_file(type,data_list):
+    read_filename()
     if(1 == type):
        read_afile(data_list)
     elif (2 == type):
         read_wfile(data_list)
     else:
-        read_afile(data_list)
         read_wfile(data_list)
+        read_afile(data_list)
+
+
+def read_filename():
+    #将指定目录下的所有文件名称读取进来
+    a = os.listdir('csv')
+    for j in a:
+    #判断是否为CSV文件，如果是则存储到列表中
+        if os.path.splitext(j)[1] == '.csv':
+            file_name.append(j)
+
 
 def read_afile(data_list):
-    for file in alipay_list:
-        read_alipay_file('./csv/' + file, data_list)
-
+    for file in file_name:
+        if 'alipay_record' in file:
+            read_alipay_file('./csv/' + file, data_list)
+#读取指定文件列表
 def read_wfile(data_list):
-    for file in wechatpay_list:
-        read_wechatpay_file('./csv/' + file, data_list)
+    for file in file_name:
+         if '微信支付' in file:
+            read_wechatpay_file('./csv/' + file, data_list)
+#读取指定文件
+def read_wfile_one(data_list):
+        read_wechatpay_file('./csv/' + '微信支付账单(20190205-20190505).csv', data_list)
 
 def read_alipay_file(file_name, data_list):
     start = False
@@ -76,7 +97,8 @@ def read_wechatpay_file(file_name, data_list):
             start = True
             continue
         if start:
-            data = {
+            try:
+                data = {
                 "pay_num": float(row[5].strip('¥')),
                 "pay_type": '',
                 "pay_time": time.strptime(row[0], "%Y-%m-%d %H:%M:%S"),
@@ -87,13 +109,18 @@ def read_wechatpay_file(file_name, data_list):
                 'pay_way':row[6],
                 'pay_state':row[7],
                 'merchants_no':row[9].strip('\t'),
-            }
+              }
+            except ValueError:
+                    data['pay_num'] = float(row[6].strip('¥'))
+            
             if re.search('支出', row[4]):
                 data['pay_type'] = '支出'
             elif re.search('收入', row[4]):
                 data['pay_type'] = '收入'
             else:
-                continue
+                if row[7] in '支付成功':
+                     data['pay_type'] = '支出'
+
             data_list.append(data)
     print(file_name + "读取长度"+str(len(data_list)))
 

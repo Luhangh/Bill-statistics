@@ -111,7 +111,14 @@ def data_typeChart(types,query_type,data):
                     pay = round(pay + item['pay_num'], 2)
                 elif item['pay_type'] == '收入':
                     pay = round(pay - item['pay_num'], 2)
-        type += '支出金额：￥'+str(pay)
+                else:
+                    print('还款'+str(item))
+                    if item['pay_state'] == '支付成功':
+                        pay = round(pay - item['pay_num'], 2)
+                    else:
+                        pay = round(pay - item['pay_num'], 2)
+
+        type += '金额：￥'+str(pay)
         chartObj[type] = abs(pay)
     return chartObj
 
@@ -128,7 +135,7 @@ def data_timeChart(times,data):
                     pay = round(pay + item['pay_num'], 2)
                 elif item['pay_type'] == '收入':
                     pay = round(pay - item['pay_num'], 2)
-        type += '支出金额：￥'+str(pay)
+        type += '金额：￥'+str(pay)
         chartObj[type] = abs(pay)
     return chartObj
 

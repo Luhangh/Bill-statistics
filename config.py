@@ -13,7 +13,7 @@ fname = "/System/Library/Fonts/STHeiti Light.ttc"
 # fname = "C:/Windows/Fonts/simhei.ttf"
 
 # alipay_types = ['支付宝网站','淘宝','其他（包括阿里巴巴和外部商家）']
-wx_types = ['商户消费','零钱提现','微信红包','转账']
+wx_types = ['商户消费','信用卡还款','微信红包','转账','扫二维码付款']
 
 alipay_types = ['哈啰出行','长信基金管理有限责任公司','蚂蚁会员（北京）网络技术服务有限公司']
 
